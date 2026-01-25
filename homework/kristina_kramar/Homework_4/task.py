@@ -3,7 +3,7 @@ my_dict = {
     'list': [42, 'cat', 9.81, False, 'hello'],
     'dict': {'a': 1, 'b': 'text', 'c': 2.5, 'd': True, 'e': None},
     'set': {5, 'dog', 1.23, False, 'world'}
-    }
+}
 
 print(my_dict['tuple'][-1])
 

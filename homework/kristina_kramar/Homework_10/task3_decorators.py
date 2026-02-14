@@ -1,13 +1,13 @@
 def decor_operation(func):
     def wrapper(x, y):
         if x == y:
-            action='+'
+            action = '+'
         elif x < 0 or y < 0:
-            action='*'
+            action = '*'
         elif x > y:
-            action='-'
+            action = '-'
         elif x < y:
-            action='/'
+            action = '/'
         return func(x, y, action)
     return wrapper
 

@@ -58,7 +58,7 @@ for book in library:
             f"Автор: {book.author}, "
             f"страниц: {book.page_num}, "
             f"материал: {book.book_material}"
-        )
+    )
     if book.reserved is True:
         print(f"{info}, зарезервирована")
     else:
@@ -116,7 +116,7 @@ for book in school_library:
             f"страниц: {book.page_num}, "
             f"предмет: {book.subject}, "
             f"класс: {book.group}"
-        )
+    )
     if book.reserved is True:
         print(f"{info}, зарезервирована")
     else:

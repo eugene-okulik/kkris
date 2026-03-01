@@ -1,4 +1,4 @@
-#task1
+# task1
 class Book:
     book_material = "paper"
     text = True
@@ -55,17 +55,17 @@ book5.reserved = True
 library = [book1, book2, book3, book4, book5]
 for book in library:
     info = (f"Название: {book.book_name}, "
-        f"Автор: {book.author}, "
-        f"страниц: {book.page_num}, "
-        f"материал: {book.book_material}"
-    )
+            f"Автор: {book.author}, "
+            f"страниц: {book.page_num}, "
+            f"материал: {book.book_material}"
+        )
     if book.reserved is True:
         print(f"{info}, зарезервирована")
     else:
         print(info)
 
 
-#task2
+# task2
 class SchoolBook(Book):
 
     def __init__(self, book_name, author, page_num, isbn, reserved, subject, group, tasks):
@@ -112,11 +112,11 @@ school_book3 = SchoolBook(
 school_library = [school_book1, school_book2, school_book3]
 for book in school_library:
     info = (f"Название: {book.book_name}, "
-        f"Автор: {book.author}, "
-        f"страниц: {book.page_num}, "
-        f"предмет: {book.subject}, "
-        f"класс: {book.group}"
-    )
+            f"Автор: {book.author}, "
+            f"страниц: {book.page_num}, "
+            f"предмет: {book.subject}, "
+            f"класс: {book.group}"
+        )
     if book.reserved is True:
         print(f"{info}, зарезервирована")
     else:

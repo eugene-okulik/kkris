@@ -38,7 +38,7 @@ class Bunch():
 
     def create_bunch(self, *args):
         return list(args)
-    
+
     def count_price(self):
         total_price = 0
         for flower in self.list_flowers:
@@ -50,13 +50,13 @@ class Bunch():
         for flower in self.list_flowers:
             wilting_time += int(flower.freshness)
         return round(wilting_time / len(self.list_flowers))
-    
+
     def sort_by_freshness(self):
         self.list_flowers.sort(key=lambda flower: int(flower.freshness))
 
     def sort_by_price(self):
         self.list_flowers.sort(key=lambda flower: int(flower.price))
-    
+
     def sort_by_length(self):
         self.list_flowers.sort(key=lambda flower: int(flower.length))
 

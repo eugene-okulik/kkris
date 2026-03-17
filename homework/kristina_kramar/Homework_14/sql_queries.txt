@@ -4,7 +4,7 @@
 INSERT INTO books (title, taken_by_student_id) VALUES ('BookNo1', (SELECT id FROM students where name='Fillip' and second_name='Senf'))
 
 3)INSERT INTO `groups` (title) VALUES ('B65252')
-UPDATE students SET group_id=(SELECT id from `groups` where title='B65252') where name='Fillip' and second_name='Senf'
+UPDATE students SET group_id='22103' where id='22414'
 
 4)INSERT INTO subjects (title) VALUES ('SuperMath'), ('SuperSQL')
 
@@ -16,16 +16,16 @@ INSERT INTO lessons (title, subject_id) VALUES ('Lesson1', (SELECT id FROM subje
 6)INSERT INTO marks (value, lesson_id, student_id) VALUES
 ('5', 
 (SELECT id FROM lessons where title='Lesson1' and subject_id='14103'),
-(SELECT id FROM students where name='Fillip' and second_name='Senf')),
+'22414'),
 ('4', 
 (SELECT id FROM lessons where title='Lesson2' and subject_id='14103'),
-(SELECT id FROM students where name='Fillip' and second_name='Senf')),
+'22414'),
 ('5', 
 (SELECT id FROM lessons where title='Lesson1' and subject_id='14104'),
-(SELECT id FROM students where name='Fillip' and second_name='Senf')),
+'22414'),
 ('5', 
 (SELECT id FROM lessons where title='Lesson2' and subject_id='14104'),
-(SELECT id FROM students where name='Fillip' and second_name='Senf'))
+'22414')
 
 
 select * from marks where student_id='22414'

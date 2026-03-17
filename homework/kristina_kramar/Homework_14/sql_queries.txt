@@ -1,0 +1,41 @@
+1)INSERT INTO students (name, second_name) VALUES ('Fillip', 'Senf')
+
+2)INSERT INTO books (title, taken_by_student_id) VALUES ('SuperBook', (SELECT id FROM students where name='Fillip' and second_name='Senf'))
+INSERT INTO books (title, taken_by_student_id) VALUES ('BookNo1', (SELECT id FROM students where name='Fillip' and second_name='Senf'))
+
+3)INSERT INTO `groups` (title) VALUES ('B65252')
+UPDATE students SET group_id='22103' where id='22414'
+
+4)INSERT INTO subjects (title) VALUES ('SuperMath'), ('SuperSQL')
+
+5)INSERT INTO lessons (title, subject_id) VALUES ('Lesson1', (SELECT id FROM subjects where title='SuperMath')),
+('Lesson2', (SELECT id FROM subjects where title='SuperMath'))
+INSERT INTO lessons (title, subject_id) VALUES ('Lesson1', (SELECT id FROM subjects where title='SuperSQL')),
+('Lesson2', (SELECT id FROM subjects where title='SuperSQL'))
+
+6)INSERT INTO marks (value, lesson_id, student_id) VALUES
+('5', 
+(SELECT id FROM lessons where title='Lesson1' and subject_id='14103'),
+'22414'),
+('4', 
+(SELECT id FROM lessons where title='Lesson2' and subject_id='14103'),
+'22414'),
+('5', 
+(SELECT id FROM lessons where title='Lesson1' and subject_id='14104'),
+'22414'),
+('5', 
+(SELECT id FROM lessons where title='Lesson2' and subject_id='14104'),
+'22414')
+
+
+select * from marks where student_id='22414'
+select * from books where taken_by_student_id='22414'
+
+select students.name, students.second_name, group_concat(books.title) as book_title, `groups`.id as group_id, marks.value, lessons.title, subjects.title
+from students 
+join `groups`on students.group_id=`groups`.id
+join books on students.id=books.taken_by_student_id 
+join marks on students.id=marks.student_id
+join lessons on marks.lesson_id=lessons.id 
+join subjects on lessons.subject_id=subjects.id
+where students.id='22414' group by students.id, marks.id;

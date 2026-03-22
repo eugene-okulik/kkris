@@ -62,7 +62,8 @@ cursor.execute("SELECT * FROM books where taken_by_student_id=%s", (student_id))
 print(cursor.fetchall())
 
 cursor.execute('''
-select students.name, students.second_name, group_concat(books.title) as book_title, `groups`.id as group_id, marks.value, lessons.title, subjects.title
+select students.name, students.second_name, group_concat(books.title) as book_title,
+`groups`.id as group_id, marks.value, lessons.title, subjects.title
 from students
 join `groups`on students.group_id=`groups`.id
 join books on students.id=books.taken_by_student_id

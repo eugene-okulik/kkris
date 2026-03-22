@@ -7,7 +7,6 @@ db = mysql.connect(
     port=25060,
     database='st-onl'
 )
-
 cursor = db.cursor(dictionary=True)
 
 # создание студента

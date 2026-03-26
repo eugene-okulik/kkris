@@ -14,8 +14,11 @@ cursor.execute("INSERT INTO students (name, second_name) VALUES (%s, %s)", ('Luk
 student_id = cursor.lastrowid
 
 # создание книг
-cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)", ('BookNmb1', student_id))
-cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)", ('BookNmb2', student_id))
+data_books = [
+    ('BookNmb1', student_id),
+    ('BookNmb2', student_id)
+]
+cursor.executemany("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)", data_books)
 
 # создание группы
 cursor.execute("INSERT INTO `groups` (title) VALUES ('A777')")
@@ -23,19 +26,25 @@ group_id = cursor.lastrowid
 cursor.execute("UPDATE students SET group_id=%s where id=%s", (group_id, student_id))
 
 # создание предметов
-cursor.execute("INSERT INTO subjects (title) VALUES ('Matan')")
-subject1_id = cursor.lastrowid
-cursor.execute("INSERT INTO subjects (title) VALUES ('Biophysics')")
-subject2_id = cursor.lastrowid
+subject_ids = []
+
+for subject in [
+    ('Matan'),
+    ('Biophysics')
+]:
+    cursor.execute(
+        "INSERT INTO subjects (title) VALUES (%s)", subject
+    )
+    subject_ids.append(cursor.lastrowid)
 
 # создание уроков
 lesson_ids = []
 
 for lesson in [
-    ('Lesson1', subject1_id),
-    ('Lesson2', subject1_id),
-    ('Lesson1', subject2_id),
-    ('Lesson2', subject2_id)
+    ('Lesson1', subject_ids[0]),
+    ('Lesson2', subject_ids[0]),
+    ('Lesson1', subject_ids[1]),
+    ('Lesson2', subject_ids[1])
 ]:
     cursor.execute(
         "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", lesson

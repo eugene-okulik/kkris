@@ -33,15 +33,14 @@ books.title as book_title,
 subjects.title as subject_title,
 lessons.title as lesson_title,
 marks.value as mark_value
-from students 
+from students
 join `groups`on students.group_id=`groups`.id
-join books on students.id=books.taken_by_student_id 
+join books on students.id=books.taken_by_student_id
 join marks on students.id=marks.student_id
-join lessons on marks.lesson_id=lessons.id 
+join lessons on marks.lesson_id=lessons.id
 join subjects on lessons.subject_id=subjects.id
 GROUP BY students.id, marks.id, books.title
-'''
-)
+''')
 
 db_data = cursor.fetchall()
 

@@ -2,19 +2,17 @@ import requests
 
 def all_objects():
     response = requests.get('http://objapi.course.qa-practice.com/object').json()
-    #print(response['data'][0])
     assert len(response) == 1, 'Not all objects returned'
 
-#all_objects()
+all_objects()
 
 
 def one_object():
     object_id = 1
     response = requests.get(f'http://objapi.course.qa-practice.com/object/{object_id}').json()
-    #print(response)
     assert response['id'] == object_id, 'Wrong object id returned'
 
-#one_object()
+one_object()
 
 
 def post_object():
@@ -27,11 +25,10 @@ def post_object():
     }
     header = {'Content-Type': 'application/json'}
     response = requests.post('http://objapi.course.qa-practice.com/object', json=body, headers=header)
-    #print(response)
     assert response.status_code == 201, 'Wrong status code returned'
     assert response.json()['name'] == 'My object', 'Wrong body name returned'
 
-#post_object()
+post_object()
 
 
 def put_object():
@@ -44,10 +41,9 @@ def put_object():
     }
     header = {'Content-Type': 'application/json'}
     response = requests.put('http://objapi.course.qa-practice.com/object/1', json=body, headers=header)
-    #print(response)
     assert response.json()['name'] == 'My object-UPD', 'Wrong body name returned'
 
-#put_object()
+put_object()
 
 
 def patch_object():
@@ -56,15 +52,13 @@ def patch_object():
     }
     header = {'Content-Type': 'application/json'}
     response = requests.patch('http://objapi.course.qa-practice.com/object/1', json=body, headers=header)
-    #print(response)
     assert response.json()['name'] == 'My object-UPDUPD', 'Wrong body name returned'
 
-#patch_object()
+patch_object()
 
 
 def delete_object():
     response = requests.delete('http://objapi.course.qa-practice.com/object/1')
-    print(response.status_code)
-    #assert response.status_code == 200, 'Wrong status code returned'
+    assert response.status_code == 200, 'Wrong status code returned'
 
 delete_object()

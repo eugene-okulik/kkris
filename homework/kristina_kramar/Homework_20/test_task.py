@@ -1,6 +1,7 @@
 import requests
 import pytest
 
+
 @pytest.fixture()
 def new_object_id():
     body = {

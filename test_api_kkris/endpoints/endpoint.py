@@ -6,11 +6,9 @@ class Endpoint:
     response = None
     json = None
 
-
     @allure.step("Check that title is the same")
     def check_response_title(self, name):
         assert self.json['name'] == name, 'Wrong body name returned'
-
 
     @allure.step("Check that response code is 200")
     def check_response_code(self):

@@ -1,17 +1,24 @@
+import pytest
+
+
 def test_get_all_objects(create_get_endpoint):
     create_get_endpoint.get_all_objects()
     create_get_endpoint.check_object_len()
 
 
-def test_get_one_object(create_get_endpoint):
-    object_id = 1
-    create_get_endpoint.get_object_by_id(object_id)
-    create_get_endpoint.check_object_id_is_correct(object_id)
+def test_get_one_object(create_get_endpoint, created_object):
+    create_get_endpoint.get_object_by_id(created_object)
+    create_get_endpoint.check_object_id_is_correct(created_object)
 
 
-def test_post_object(create_post_endpoint):
+@pytest.mark.parametrize("object_name", [
+    "Updated object",
+    "Test name 1232425",
+    "Loooooooooooooooooooooooooooooooooooooooooong name",
+])
+def test_post_object(create_post_endpoint, object_name):
     payload = {
-        "name": 'My object',
+        "name": object_name,
         "data": {
             "color": "red",
             "size": "medium"

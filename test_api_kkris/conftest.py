@@ -26,7 +26,7 @@ def create_delete_endpoint():
 
 
 @pytest.fixture()
-def created_object(create_post_endpoint):
+def created_object(create_post_endpoint, create_delete_endpoint):
     payload = {
         "name": "temp object",
         "data": {
@@ -37,4 +37,6 @@ def created_object(create_post_endpoint):
     headers = {'Content-Type': 'application/json'}
 
     response = create_post_endpoint.create_new_object(payload=payload, headers=headers)
-    return response.json()['id']
+    object_id = response.json()['id']
+    yield object_id
+    create_delete_endpoint.delete_existing_object(object_id)

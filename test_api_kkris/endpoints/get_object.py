@@ -14,7 +14,7 @@ class GetObject(Endpoint):
     @allure.step("Check that objects>0 returned")
     def check_object_len(self):
         assert len(self.json["data"]) > 0, '0 objects returned'
-    
+
     @allure.step("Get object by id")
     def get_object_by_id(self, object_id):
         self.response = requests.get(f'{self.url}/{object_id}')
